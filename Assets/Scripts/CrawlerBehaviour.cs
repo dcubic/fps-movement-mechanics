@@ -16,4 +16,8 @@ public class CrawlerBehaviour : MonoBehaviour {
     void Update() {
         navMeshAgent.SetDestination(playerContainer.transform.position);
     }
+
+    public void takeDamage() {
+        Destroy(gameObject);
+    }
 }
