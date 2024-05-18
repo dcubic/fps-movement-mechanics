@@ -20,8 +20,7 @@ public class MovementControl : MonoBehaviour
 
     void Update() {
         handleWASDInput();
-        handleGravity();
-        handleJump();
+        handleVerticalVelocity();
     }
 
     private void handleWASDInput() {
@@ -32,7 +31,7 @@ public class MovementControl : MonoBehaviour
         characterController.Move(movementDirection * Time.deltaTime * walkSpeed);
     }
 
-    private void handleGravity() {
+    private void handleVerticalVelocity() {
         bool isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask);
 
         if (!isGrounded) {
@@ -46,11 +45,6 @@ public class MovementControl : MonoBehaviour
             isGroundedTimeoutExpiry = Time.time + isGroundedTimeoutDuration;
         }
 
-        Debug.Log($"actual velocity before Move call: {velocity}");
         characterController.Move(velocity * Time.deltaTime);
-    }
-
-    private void handleJump() {
-
     }
 }
